@@ -96,7 +96,7 @@ def get_relevant_timestamps(query: str, yt: YouTube, video_path: str) -> Tuple[i
     start_time = 15
     end_time = min(yt.length, MAX_VIDEO_LENGTH)
     return start_time, end_time
-
+    print(f"End time is : {end_time}")
 
 def search_and_embed_videos(query: str, num_videos: int, imagebind: ImageBind) -> List[VideoMetadata]:
     """
