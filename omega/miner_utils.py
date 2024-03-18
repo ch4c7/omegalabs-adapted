@@ -13,6 +13,7 @@ from omega.constants import MAX_VIDEO_LENGTH
 from omega import video_utils
 
 TWENTY_MINUTES = 1200
+THREE_MINUTES = 180
 
 class VideoAnalyzer:
     def __init__(self, model_id, revision):
@@ -92,7 +93,7 @@ def get_relevant_timestamps(query: str, yt: YouTube, video_path: str) -> Tuple[i
     Miner TODO: Implement logic to get the optimal start and end timestamps of a video for
     ensuring relevance to the query.
     """
-    start_time = 0
+    start_time = 15
     end_time = min(yt.length, MAX_VIDEO_LENGTH)
     return start_time, end_time
 
@@ -117,7 +118,7 @@ def search_and_embed_videos(query: str, num_videos: int, imagebind: ImageBind) -
                 download_path = video_utils.download_video(
                     result.video_id,
                     start=0,
-                    end=min(result.length, FIVE_MINUTES)  # download the first 5 minutes at most
+                    end=min(result.length, THREE_MINUTES)  # download the first 3 minutes at most
                 )
                 if download_path:
                     print(f"Downloaded video {result.video_id} ({min(result.length, FIVE_MINUTES)}) in {time.time() - start} seconds")
